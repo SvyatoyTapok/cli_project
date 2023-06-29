@@ -1,20 +1,24 @@
 export interface Language {
-  type: string;
+  language: string;
+  name: string;
 }
-
 export interface GetLangType {
   data: {
     languages: Language[];
   };
 }
 
-export type TranslatedTextType = {
-  text: string;
-  source: string;
-  target: string;
+export type Translate = {
+  detectedSourceLanguage: string;
+  model: string;
+  translatedText: string;
 };
+
 export type ResultPostRequestTranslateType = {
   data: {
-    translations: TranslatedTextType[];
+    translations: Translate[];
   };
+};
+export type TranslateScreen = {
+  navigation: string;
 };

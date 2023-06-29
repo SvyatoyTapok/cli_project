@@ -1,13 +1,16 @@
-import {Language} from './RequestTypes';
-import {ResultPostRequestTranslateType} from './RequestTypes';
+import {
+  Language,
+  ResultPostRequestTranslateType,
+  Translate,
+} from './RequestTypes';
+
 const API_KEY = 'AIzaSyCkN4oK4kgk-sxQVpmQ0xzfcEm4MMc9zxg';
 export async function postRequest(
   text: string,
   source: string,
   target: string,
-): Promise<ResultPostRequestTranslateType> {
+): Promise<Translate[]> {
   const baseUrl = 'https://translation.googleapis.com/language/translate/v2';
-
   const url = new URL(baseUrl);
   const params = {
     q: text,

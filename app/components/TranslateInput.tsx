@@ -1,17 +1,29 @@
-import { TextInput } from "react-native";
-import { useState } from "react";
-import { View } from "react-native";
-import styles from "./styles/TranslateInputStyle";
+import {TextInput} from 'react-native';
+import {useState} from 'react';
+import {View} from 'react-native';
+import styles from './styles/TranslateInputStyle';
+type TranslateInputType = {
+  placeholder: string;
+  value: string;
+  setText: () => void;
+  handleClick: () => void;
+  editable: boolean;
+};
 
-function TranslateInput({placeholder, value, setText, handleClick, editable}) {
+function TranslateInput({
+  placeholder,
+  value,
+  setText,
+  handleClick,
+  editable,
+}: TranslateInputType) {
   const [heightValue, setHeightValue] = useState(40);
   return (
-    <View style={[styles.TextBoxes, { height: heightValue }]}>
+    <View style={[styles.TextBoxes, {height: heightValue}]}>
       <TextInput
         onChangeText={setText}
         onChange={handleClick}
-        // {/*todo: инлайн функции*/}
-        onLayout={(event) => {
+        onLayout={event => {
           if (event.nativeEvent.layout) {
             setHeightValue(event.nativeEvent.layout.height + 40);
           }
@@ -20,8 +32,7 @@ function TranslateInput({placeholder, value, setText, handleClick, editable}) {
         multiline
         value={value}
         placeholder={placeholder}
-        style={{ textAlign: "center", fontSize: 20 }}
-
+        style={{textAlign: 'center', fontSize: 20}}
       />
     </View>
   );

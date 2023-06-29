@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
-import { View, Button, Text, Pressable, Image } from "react-native";
-import TranslateInput from "../components/TranslateInput";
-import { postRequest } from "../api/postRequest";
-import { getLanguages } from "../api/getLanguages";
-import styles from "../components/styles/TranslateScreenStyle";
-import DropDownTranslate from "../components/DropDownTranslate";
+import {useEffect, useState} from 'react';
+import {View, Button, Text, Pressable, Image} from 'react-native';
+import TranslateInput from '../components/TranslateInput';
+import {postRequest, getLanguages} from '../api/TextTranslate';
+import {TranslateScreen, Language, Translate} from '../api/RequestTypes';
+import styles from '../components/styles/TranslateScreenStyle';
+import DropDownTranslate from '../components/DropDownTranslate';
 
-type TranslateScreen = {
-  navigation:string
-}
-
-export default function TranslateScreen ({ navigation }:TranslateScreen) {
-  const [text, setText] = useState();
-  const [source, setSource] = useState("en");
-  const [target, setTarget] = useState("ru");
-  const [result, setResult] = useState();
-  const [languages, setLanguages] = useState([]);
+export default function TranslateScreen({navigation}: TranslateScreen) {
+  const [text, setText] = useState<string>();
+  const [source, setSource] = useState<string>('en');
+  const [target, setTarget] = useState<string>('ru');
+  const [result, setResult] = useState<Translate[]>([]);
+  const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +23,7 @@ export default function TranslateScreen ({ navigation }:TranslateScreen) {
 
   const handleClick = async () => {
     const response = await postRequest(text, source, target);
-    const translatedText = response?.[0]?.translatedText;
+    const translatedText:Translate = response?.[0]?.translatedText;
     setResult(translatedText);
   };
 
@@ -40,7 +36,7 @@ export default function TranslateScreen ({ navigation }:TranslateScreen) {
 
   return (
     <View>
-      <View style={{ alignItems: "center" }}>
+      <View style={{alignItems: 'center'}}>
         <DropDownTranslate setTarget={setSource} languages={languages} />
         <TranslateInput
           setText={setText}
@@ -51,9 +47,8 @@ export default function TranslateScreen ({ navigation }:TranslateScreen) {
           <Text> Ваш язык {source}</Text>
           <Pressable onPress={handleSwap}>
             <Image
-              style={{ width: 20, height: 20 }}
-              source={require("../assets/icons/swapIcon.png")}
-            ></Image>
+              style={{width: 20, height: 20}}
+              source={require('../assets/icons/swapIcon.png')}></Image>
           </Pressable>
           <Text> Язык на который переводим {target}</Text>
         </View>
@@ -62,8 +57,8 @@ export default function TranslateScreen ({ navigation }:TranslateScreen) {
       </View>
       <Button
         title="Go to title"
-        onPress={() => navigation.navigate("Layout")}
+        onPress={() => navigation.navigate('Layout')}
       />
     </View>
   );
-};
+}
