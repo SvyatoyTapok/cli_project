@@ -6,5 +6,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
       },
+      button:{
+        backgroundColor:"black",
+        width:100,
+        height:50
+      }
 })
 export default styles

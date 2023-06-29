@@ -1,6 +1,13 @@
 import { View, Text, Image, Pressable } from "react-native";
 import styles from "./styles/ProductStyle";
-function Product({ image, title, sizes, price }) {
+
+type ProductType = {
+  image:string
+  title:string
+  sizes:string
+  price:number
+}
+function Product({ image, title, sizes, price }:ProductType) {
   return (
     <View style={[styles.orderItemContainer]}>
       <View style={[styles.orderItem]}>

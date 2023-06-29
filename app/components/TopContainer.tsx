@@ -3,14 +3,21 @@ import { View, Pressable, Text, Image } from "react-native";
 import DropdownMenu from "./DropdownMenu";
 import styles from "./styles/TopContainerStyle";
 
-export default function TopContainer({address,setAddress, activeDropdownMenu, setactiveDropdownMenu}) {
+type TopContainerType = {
+  address:string
+  setAddress:()=>void
+  activeDropdownMenu:boolean
+  setactiveDropdownMenu:(booleanItem:boolean)=>void
+}
+
+export default function TopContainer({address,setAddress, activeDropdownMenu, setactiveDropdownMenu}:TopContainerType) {
   const handlePressAddress = useCallback(() => {
     setactiveDropdownMenu(!activeDropdownMenu)
   }, [setactiveDropdownMenu, activeDropdownMenu])
 
   return (
     <View style={[styles.topContainer]}>
-      {/*todo: инлайн функции*/}
+    
       <Pressable onPress={handlePressAddress}>
         <Text style={[styles.topText]}>{address}</Text>
       </Pressable>

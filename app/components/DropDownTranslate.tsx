@@ -1,7 +1,12 @@
 import React from "react";
 import SelectDropdown from "react-native-select-dropdown";
+import { Language } from "../api/RequestTypes";
+type DropDownTranslateType = {
+  languages: Language[]
+  setTarget:(item:string)=>void
+}
 
-function DropDownTranslate({ languages, setTarget }) {
+function DropDownTranslate({ languages, setTarget }:DropDownTranslateType) {
   return (
     <SelectDropdown
       defaultButtonText={"Выберите язык"}

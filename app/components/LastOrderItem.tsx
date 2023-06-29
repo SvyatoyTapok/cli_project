@@ -1,7 +1,13 @@
 import { View, Text } from "react-native";
 import styles from "./styles/LastOrderItemStyle";
 
-function LastOrderItem({ itemName, itemPrice, ammountItem }) {
+type LastOrderItemType = {
+  itemName:string
+  itemPrice:string
+  ammountItem:string
+}
+
+function LastOrderItem({ itemName, itemPrice, ammountItem }:LastOrderItemType) {
   return (
     <View style={[styles.lastOrderItemContainer]}>
       <View style={[styles.leftContainer]}>

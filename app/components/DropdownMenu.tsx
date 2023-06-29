@@ -3,11 +3,16 @@ import { View, Text, Pressable, FlatList } from "react-native";
 import styles from "./styles/DropDownMenuStyle";
 import ADDRESSES from "../assets/constants/Addresses";
 
-function DropdownMenu({ setAddress, setactiveDropdownMenu, activeDropMenu }) {
+type DropDownMenuType = {
+  setAddress:(item:string)=>void
+  setactiveDropdownMenu:(booleanItem:boolean)=>void
+  activeDropMenu:boolean
+}
+function DropdownMenu({ setAddress, setactiveDropdownMenu, activeDropMenu }:DropDownMenuType) {
   return (
     <View style={[styles.dropdownContainer]}>
       <FlatList
-        ItemSeparatorComponent={<View style={[styles.separatorItem]} />}
+        ItemSeparatorComponent={() => <View style={[styles.separatorItem]} />}
         data={ADDRESSES}
         renderItem={({ item }) => (
           <Pressable
