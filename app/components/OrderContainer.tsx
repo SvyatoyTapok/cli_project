@@ -16,7 +16,6 @@ export default function OrderContainer() {
   return (
     <View style={[styles.orderContainer]}>
       <FlatList
-        bounces={0}
         ListHeaderComponent={() => (
           <View>
             <View style={[styles.searchContainer]}>
@@ -43,13 +42,11 @@ export default function OrderContainer() {
                 <Text style={[styles.repeatTextButton]}>1750 ₽</Text>
               </Pressable>
             </View>
-
             <LastOrderItem
               itemName={"Американо"}
               ammountItem={"200 мл"}
               itemPrice={"250 ₽"}
             />
-
             <LastOrderItem
               itemName={"Лимонный чай без сахара"}
               ammountItem={"110 г"}

@@ -1,23 +1,37 @@
-import React from "react";
-import SelectDropdown from "react-native-select-dropdown";
-import { Language } from "../api/RequestTypes";
+import React, {useEffect, useRef} from 'react';
+import SelectDropdown from 'react-native-select-dropdown';
+import {Language} from '../api/RequestTypes';
 type DropDownTranslateType = {
-  languages: Language[]
-  setTarget:(item:string)=>void
-}
+  languages: Language[];
+  setTarget: (item: string) => void;
+  indexTarget: number;
+ 
+};
+function DropDownTranslate({
+  languages,
+  setTarget,
+  indexTarget,
+}: DropDownTranslateType) {
 
-function DropDownTranslate({ languages, setTarget }:DropDownTranslateType) {
+  const dropdown = useRef<SelectDropdown>(null);
+  useEffect(() => {    
+    if (languages.length) {
+      dropdown.current?.selectIndex(indexTarget);
+    }
+  }, [languages, indexTarget]);
+
   return (
     <SelectDropdown
-      defaultButtonText={"Выберите язык"}
+      ref={dropdown}
+      
       data={languages}
-      buttonTextAfterSelection={(selectedItem) => {
+      buttonTextAfterSelection={selectedItem => {
         return selectedItem.name;
       }}
-      rowTextForSelection={(item) => {
+      rowTextForSelection={item => {
         return item.name;
       }}
-      onSelect={(item) => {
+      onSelect={item => {
         setTarget(item.language);
       }}
       search={true}

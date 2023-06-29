@@ -19,6 +19,6 @@ export type ResultPostRequestTranslateType = {
     translations: Translate[];
   };
 };
-export type TranslateScreen = {
+export type TranslateScreenType = {
   navigation: string;
 };

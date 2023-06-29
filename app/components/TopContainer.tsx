@@ -5,7 +5,7 @@ import styles from "./styles/TopContainerStyle";
 
 type TopContainerType = {
   address:string
-  setAddress:()=>void
+  setAddress:(item:string)=>void
   activeDropdownMenu:boolean
   setactiveDropdownMenu:(booleanItem:boolean)=>void
 }

@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {View, Button, Text, Pressable, Image} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
 import {postRequest, getLanguages} from '../api/TextTranslate';
-import {TranslateScreen, Language} from '../api/RequestTypes';
+import {Language} from '../api/RequestTypes';
 import styles from '../components/styles/TranslateScreenStyle';
 import DropDownTranslate from '../components/DropDownTranslate';
 import {useNavigation} from '@react-navigation/native';
@@ -10,10 +10,10 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {MainStack} from './Navigation/NavigationStack';
 
 export default function TranslateScreen() {
-  const [text, setText] = useState('');
+  let [text, setText] = useState('');
   const [source, setSource] = useState<string>('en');
   const [target, setTarget] = useState<string>('ru');
-  const [result, setResult] = useState('');
+  let [result, setResult] = useState('');
   const [languages, setLanguages] = useState<Language[]>([]);
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
 
@@ -31,38 +31,47 @@ export default function TranslateScreen() {
     setResult(translatedText);
   };
 
-  const handleSwap = async () => {
+  const handleSwap = () => {
     setSource(target);
     setTarget(source);
     setText(result);
     setResult(text);
   };
 
+  const indexOfSource = languages.findIndex(i => i.language == source);
+  const indexOfTarget = languages.findIndex(i => i.language == target);
+
   return (
     <View>
       <View style={{alignItems: 'center'}}>
-        <DropDownTranslate setTarget={setSource} languages={languages} />
+        <DropDownTranslate
+          indexTarget={indexOfSource}
+          setTarget={setSource}
+          languages={languages}
+        />
         <TranslateInput
           onChangeText={setText}
           placeholder="Введите ваш текст"
         />
         <View style={[styles.languagesContainer]}>
-          <Text> Ваш язык {source}</Text>
           <Pressable onPress={handleSwap}>
             <Image
               style={{width: 20, height: 20}}
               source={require('../assets/icons/swapIcon.png')}></Image>
           </Pressable>
-          <Text> Язык на который переводим {target}</Text>
         </View>
-        <DropDownTranslate setTarget={setTarget} languages={languages} />
+        <DropDownTranslate
+          indexTarget={indexOfTarget}
+          setTarget={setTarget}
+          languages={languages}
+        />
         <TranslateInput placeholder="Перевод" value={result} />
-        <Pressable style={[styles.]}>
+        <Pressable onPress={handleClick} style={[styles.button]}>
           <Text>Перевести</Text>
         </Pressable>
       </View>
       <Button
-        title="Go to title"
+        title="Go to Layout"
         onPress={() => navigation.navigate('Layout')}
       />
     </View>
