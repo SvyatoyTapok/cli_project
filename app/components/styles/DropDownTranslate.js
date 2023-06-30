@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native-web";
 
 const styles = StyleSheet.create({
-    rowStyle:{
-        borderRadius:15,
-        backgroundColor:'grey',
+    dropDownStyle:{
+        paddingTop:15,
+        paddingBottom:15
     }
 })
 
