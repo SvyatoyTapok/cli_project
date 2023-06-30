@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
-import {View, Button, Text, Pressable, Image} from 'react-native';
+import { useEffect, useState} from 'react';
+import {View, Button, Pressable, Image} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
 import {postRequest, getLanguages} from '../api/TextTranslate';
 import {Language} from '../api/RequestTypes';
@@ -19,7 +19,7 @@ export default function TranslateScreen() {
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
 
   useEffect(() => {
-    throttledCallback(text);
+    throttledCallback();
   }, [text]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function TranslateScreen() {
     setResult(translatedText);
   };
 
-  const throttledCallback = useThrottle(handleClick, 1000)
+  const throttledCallback = useThrottle(handleClick, 1000);
 
   const handleSwap = () => {
     setSource(target);
