@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View, Button, Pressable, Image} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
 import {postRequest, getLanguages} from '../api/TextTranslate';
@@ -8,7 +8,7 @@ import DropDownTranslate from '../components/DropDownTranslate';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {MainStack} from './Navigation/NavigationStack';
-import { useThrottle } from '../lib/hooks/useThrottle';
+import {useThrottle} from '../lib/hooks/useThrottle';
 
 export default function TranslateScreen() {
   const [text, setText] = useState('');
@@ -50,22 +50,28 @@ export default function TranslateScreen() {
 
   return (
     <View style={[styles.translateScreenContainer]}>
-      <View style={{alignItems: 'center'}}>
-        <DropDownTranslate
-          indexTarget={indexOfSource}
-          setTarget={setSource}
-          languages={languages}
-        />
+      <View style={{alignItems:'center'}}>
         <TranslateInput
           value={text}
           handleClick={handleClick}
           onChangeText={setText}
           placeholder="Введите ваш текст"
         />
+        <DropDownTranslate
+          indexTarget={indexOfSource}
+          setTarget={setSource}
+          languages={languages}
+        />
         <View style={[styles.languagesContainer]}>
           <Pressable onPress={handleSwap}>
             <Image
-              style={{width: 50, height: 50}}
+              style={{
+                width: 100,
+                height: 100,
+                borderWidth: 1,
+                borderColor: 'white',
+                borderRadius: 50,
+              }}
               source={require('../assets/icons/swapIcon.png')}></Image>
           </Pressable>
         </View>
@@ -80,11 +86,12 @@ export default function TranslateScreen() {
           value={result}
         />
       </View>
-      <Button
-        title="Go to Layout"
-        onPress={() => navigation.navigate('Layout')}
-      />
+      <View style={[styles.bottomButton]}>
+        <Button
+          title="Go to Layout"
+          onPress={() => navigation.navigate('Layout')}
+        />
+      </View>
     </View>
   );
 }
-

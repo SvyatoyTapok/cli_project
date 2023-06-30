@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: "magneta",
         justifyContent: "center",
-        paddingHorizontal: 15,
       },
 })
 export default styles

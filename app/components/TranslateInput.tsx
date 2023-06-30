@@ -22,7 +22,7 @@ function TranslateInput({
           }
         }}
         multiline
-        style={{textAlign: 'center', fontSize: 20}}
+        style={{textAlign: 'center', fontSize: 20, color:'white'}}
       />
     </View>
   );
