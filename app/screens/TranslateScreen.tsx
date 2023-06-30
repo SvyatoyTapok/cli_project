@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Button, Text, Pressable, Image} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
 import {postRequest, getLanguages} from '../api/TextTranslate';
@@ -8,14 +8,19 @@ import DropDownTranslate from '../components/DropDownTranslate';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {MainStack} from './Navigation/NavigationStack';
+import { useThrottle } from '../lib/hooks/useThrottle';
 
 export default function TranslateScreen() {
-  let [text, setText] = useState('');
+  const [text, setText] = useState('');
   const [source, setSource] = useState<string>('en');
   const [target, setTarget] = useState<string>('ru');
-  let [result, setResult] = useState('');
+  const [result, setResult] = useState('');
   const [languages, setLanguages] = useState<Language[]>([]);
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
+
+  useEffect(() => {
+    throttledCallback(text);
+  }, [text]);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +36,8 @@ export default function TranslateScreen() {
     setResult(translatedText);
   };
 
+  const throttledCallback = useThrottle(handleClick, 1000)
+
   const handleSwap = () => {
     setSource(target);
     setTarget(source);
@@ -42,7 +49,7 @@ export default function TranslateScreen() {
   const indexOfTarget = languages.findIndex(i => i.language == target);
 
   return (
-    <View>
+    <View style={[styles.translateScreenContainer]}>
       <View style={{alignItems: 'center'}}>
         <DropDownTranslate
           indexTarget={indexOfSource}
@@ -50,13 +57,15 @@ export default function TranslateScreen() {
           languages={languages}
         />
         <TranslateInput
+          value={text}
+          handleClick={handleClick}
           onChangeText={setText}
           placeholder="Введите ваш текст"
         />
         <View style={[styles.languagesContainer]}>
           <Pressable onPress={handleSwap}>
             <Image
-              style={{width: 20, height: 20}}
+              style={{width: 50, height: 50}}
               source={require('../assets/icons/swapIcon.png')}></Image>
           </Pressable>
         </View>
@@ -65,10 +74,11 @@ export default function TranslateScreen() {
           setTarget={setTarget}
           languages={languages}
         />
-        <TranslateInput placeholder="Перевод" value={result} />
-        <Pressable onPress={handleClick} style={[styles.button]}>
-          <Text>Перевести</Text>
-        </Pressable>
+        <TranslateInput
+          handleClick={handleClick}
+          placeholder="Перевод"
+          value={result}
+        />
       </View>
       <Button
         title="Go to Layout"
@@ -77,3 +87,4 @@ export default function TranslateScreen() {
     </View>
   );
 }
+
