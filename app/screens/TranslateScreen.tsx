@@ -9,7 +9,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {MainStack} from './Navigation/NavigationStack';
 import {useThrottle} from '../lib/hooks/useThrottle';
 import {fetchLanguages} from '../store/languagesSlice';
-import {languages} from '../store/selectors';
+import {useAppSelector} from '../store/hook';
 import {useAppDispatch} from '../store/hook';
 
 export default function TranslateScreen() {
@@ -17,6 +17,7 @@ export default function TranslateScreen() {
   const [source, setSource] = useState<string>('en');
   const [target, setTarget] = useState<string>('ru');
   const [result, setResult] = useState('');
+  const languages = useAppSelector(state => state.languages.languages);
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
   const dispatch = useAppDispatch();
 
