@@ -1,33 +1,31 @@
 import {useEffect, useState} from 'react';
 import {View, Button, Pressable, Image} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
-import {postRequest, getLanguages} from '../api/TextTranslate';
-import {Language} from '../api/RequestTypes';
+import {postRequest} from '../api/TextTranslate';
 import styles from '../components/styles/TranslateScreenStyle';
 import DropDownTranslate from '../components/DropDownTranslate';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {MainStack} from './Navigation/NavigationStack';
 import {useThrottle} from '../lib/hooks/useThrottle';
+import {fetchLanguages} from '../store/languagesSlice';
+import {languages} from '../store/selectors';
+import {useAppDispatch} from '../store/hook';
 
 export default function TranslateScreen() {
   const [text, setText] = useState('');
   const [source, setSource] = useState<string>('en');
   const [target, setTarget] = useState<string>('ru');
   const [result, setResult] = useState('');
-  const [languages, setLanguages] = useState<Language[]>([]);
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     throttledCallback();
   }, [text]);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await getLanguages(target);
-      setLanguages(response);
-    }
-    fetchData();
+    dispatch(fetchLanguages(target));
   }, []);
 
   const handleClick = async () => {
@@ -50,7 +48,7 @@ export default function TranslateScreen() {
 
   return (
     <View style={[styles.translateScreenContainer]}>
-      <View style={{alignItems:'center'}}>
+      <View style={{alignItems: 'center'}}>
         <TranslateInput
           value={text}
           handleClick={handleClick}
