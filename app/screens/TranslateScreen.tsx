@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {View, Button, Pressable, Image} from 'react-native';
+import {View, Pressable, Image, Text} from 'react-native';
 import TranslateInput from '../components/TranslateInput';
 import {postRequest} from '../api/TextTranslate';
 import styles from '../components/styles/TranslateScreenStyle';
@@ -50,6 +50,12 @@ export default function TranslateScreen() {
   return (
     <View style={[styles.translateScreenContainer]}>
       <View style={{alignItems: 'center'}}>
+        <Pressable onPress={() => navigation.navigate('Favourite')}>
+          <Text style={{fontSize: 22, padding: 10, color: 'brown'}}>
+            Go to Favorite
+          </Text>
+        </Pressable>
+
         <TranslateInput
           value={text}
           handleClick={handleClick}
@@ -86,10 +92,11 @@ export default function TranslateScreen() {
         />
       </View>
       <View style={[styles.bottomButton]}>
-        <Button
-          title="Go to Layout"
-          onPress={() => navigation.navigate('Layout')}
-        />
+        <Pressable onPress={() => navigation.navigate('Layout')}>
+          <Text style={{fontSize: 22, padding: 10, color: 'brown'}}>
+            Go to Layout
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
