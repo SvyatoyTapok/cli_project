@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     storiesBox: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
       storiesCurrentTitle: {
         fontFamily: "Dosis",
         fontSize: 22,
-        fontWeight: 700,
+        fontWeight: "700",
       },
 
 

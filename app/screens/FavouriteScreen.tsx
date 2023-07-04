@@ -1,6 +1,5 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
-
 import styles from '../components/styles/LayoutScreenStyle';
 import {useAppDispatch, useAppSelector} from '../store/hook';
 import {selectFavoriteList, selectLangList} from '../store/selectors';

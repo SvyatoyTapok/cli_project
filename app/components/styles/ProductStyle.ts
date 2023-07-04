@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     orderItemContainer: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   titleItem: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: 18,
   },
   confirmButton: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   priceItem: {
     fontSize: 20,
-    fontWeight: 900,
+    fontWeight: "900",
   },
 
   buttonContainer: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   ammountLastOrderItem: {
     fontSize: 14,
-    fontWeight: 300,
+    fontWeight: "300",
   },
 })
 

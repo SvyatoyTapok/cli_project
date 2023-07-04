@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   topContainer: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   topText: {
     fontSize: 17.5,
-    fontWeight: 300,
+    fontWeight: "300",
   },
   topIconProfile: {
     width: 34,

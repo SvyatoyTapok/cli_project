@@ -30,7 +30,9 @@ export const fetchLanguages = createAsyncThunk<Language[], string>(
     });
 
     const result = await res.json();
+    
     return result.data.languages;
+    
   },
 );
 export const initialState: initialStateType = {

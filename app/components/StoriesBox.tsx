@@ -6,7 +6,7 @@ import StoriesItem from './StoriesItem';
 export default function StoriesBox() {
   return (
     <View style={[styles.storiesBox]}>
-      <View style={[styles.storiesTitle]}>
+      <View>
         <Text style={[styles.storiesCurrentTitle]}>Истории</Text>
       </View>
       <View style={{overflow: 'hidden'}}>

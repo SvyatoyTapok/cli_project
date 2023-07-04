@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   orderContainer: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   titleLastOrder: {
     fontSize: 24,
     fontFamily: "Dosis",
-    fontWeight: 700,
+    fontWeight: "700",
   },
   subTitleLastOrder: {
     color: "#989FA6",
@@ -60,12 +60,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
 
-  repeatTextButton: {
-    color: "white",
-  },
+
 
   nameLastOrderItem: {
-    fontWeight: 600,
+    fontWeight: "600",
     fontSize: 16,
   },
 

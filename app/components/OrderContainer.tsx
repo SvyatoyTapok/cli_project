@@ -61,7 +61,7 @@ export default function OrderContainer() {
           </View>
         )}
         StickyHeaderComponent={() => (
-          <View style={[styles.StickyHeaderComponent]} />
+          <View style={[styles.stickyHeaderComponent]} />
         )}
         showsVerticalScrollIndicator={false}
         numColumns={2}
