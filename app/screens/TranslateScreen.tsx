@@ -12,6 +12,7 @@ import {fetchLanguages} from '../store/languagesSlice';
 import {useAppSelector} from '../store/hook';
 import {useAppDispatch} from '../store/hook';
 import { selectAllLangs } from '../redux/addToDropDown';
+import {StatusBar} from 'react-native'
 export default function TranslateScreen() {
   const [text, setText] = useState('');
   const [source, setSource] = useState<string>('en');
@@ -49,6 +50,7 @@ export default function TranslateScreen() {
 
   return (
     <View style={[styles.translateScreenContainer]}>
+      <StatusBar barStyle={'dark-content'}/>
       <View style={{alignItems: 'center'}}>
         <Pressable onPress={() => navigation.navigate('Favourite')}>
           <Text style={{fontSize: 22, padding: 10, color: 'brown'}}>

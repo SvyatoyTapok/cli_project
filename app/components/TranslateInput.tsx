@@ -1,5 +1,5 @@
-import { TextInput, TextInputProps} from 'react-native';
-import {useEffect, useRef, useState} from 'react';
+import {TextInput, TextInputProps} from 'react-native';
+import {useState} from 'react';
 import {View} from 'react-native';
 import styles from './styles/TranslateInputStyle';
 
@@ -7,10 +7,7 @@ type TranslateInputType = {
   handleClick: () => void;
 } & TextInputProps;
 
-function TranslateInput({
-  handleClick,
-  ...props
-}: TranslateInputType) {
+function TranslateInput({handleClick, ...props}: TranslateInputType) {
   const [heightValue, setHeightValue] = useState(40);
   return (
     <View style={[styles.TextBoxes, {height: heightValue}]}>
@@ -22,7 +19,7 @@ function TranslateInput({
           }
         }}
         multiline
-        style={{textAlign: 'center', fontSize: 20, color:'white'}}
+        style={{textAlign: 'center', fontSize: 20, color: 'white'}}
       />
     </View>
   );
