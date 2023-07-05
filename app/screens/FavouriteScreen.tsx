@@ -10,7 +10,7 @@ export default function FavouriteScreen() {
   const langs = useAppSelector(selectLangList);
   const favorite = useAppSelector(selectFavoriteList);
   const dispatch = useAppDispatch();
-  console.log(langs.length, favorite.length);
+
   return (
     <View style={[styles.layoutScreen]}>
       <FlatList

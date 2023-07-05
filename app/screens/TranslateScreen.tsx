@@ -11,13 +11,13 @@ import {useThrottle} from '../lib/hooks/useThrottle';
 import {fetchLanguages} from '../store/languagesSlice';
 import {useAppSelector} from '../store/hook';
 import {useAppDispatch} from '../store/hook';
-
+import { selectAllLangs } from '../redux/addToDropDown';
 export default function TranslateScreen() {
   const [text, setText] = useState('');
   const [source, setSource] = useState<string>('en');
   const [target, setTarget] = useState<string>('ru');
   const [result, setResult] = useState('');
-  const languages = useAppSelector(state => state.languages.languages);
+  const languages = useAppSelector(selectAllLangs);
   const navigation = useNavigation<StackNavigationProp<MainStack>>();
   const dispatch = useAppDispatch();
 

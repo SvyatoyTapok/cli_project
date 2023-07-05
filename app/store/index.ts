@@ -13,16 +13,14 @@ import {
 import persistStore from 'redux-persist/es/persistStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const rootReducer = combineReducers({
   languages: languageReducer,
   favorite: favoriteLangsReduser,
-
 });
-
+console.log();
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage
+  storage: AsyncStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -38,8 +36,6 @@ const store = configureStore({
       },
     }),
 });
-
-
 
 export const persistor = persistStore(store);
 export default store;
